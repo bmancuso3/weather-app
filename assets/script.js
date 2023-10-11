@@ -18,38 +18,43 @@ function handleCityInput(event) {
     }
     else {
         localStorage.setItem('City', searchCity);
-        renderCity();
+        callGeoAPI();
     }
 }
 
-function renderCity() {
+// API call for latitude and longitude from city name
+function callGeoAPI() {
     city = localStorage.getItem('City');
-    console.log(city);
+    var cityURL = 'http://api.openweathermap.org/geo/1.0/direct?q='+city+'&limit=5&appid=012dcd8608fee5e0f427404e5ffe5eba';
+    fetch(cityURL)
+        .then(function(results) {
+            return results.json();
+        })
+        .then(function(data) {
+            console.log(city);
+            console.log(data[0].lat, data[0].lon);
+            localStorage.setItem('latitude', data[0].lat);
+            localStorage.setItem('longitude', data[0].lon);
+        });
+    // callWeatherAPI();
 }
 
 
-// API call for latitude and longitude from city name
-// var cityURL = 'http://api.openweathermap.org/geo/1.0/direct?q='+city+'&limit=5&appid=012dcd8608fee5e0f427404e5ffe5eba';
-// fetch(cityURL)
-//     .then(function(results) {
-//         return results.json();
-//     })
-//     .then(function(data) {
-//         console.log(data);
-//     });
-
-
-// var latitude = ;
-// var longitude = ;
 // API call for weather using latitude and longitude
-// var latlongURL = 'api.openweathermap.org/data/2.5/forecast?lat='+latitude+'&lon='+longitude+'&appid=012dcd8608fee5e0f427404e5ffe5eba';
-// fetch(latlongURL)
-//     .then(function(results) {
-//         return results.json();
-//     })
-//     .then(function(data) {
-//         console.log(data);
-//     });
+function callWeatherAPI() {
+    var latitude = localStorage.getItem('latitude');
+    var longitude = localStorage.getItem('longitude');
+    var latlongURL = 'api.openweathermap.org/data/2.5/forecast?lat='+latitude+'&lon='+longitude+'&appid=012dcd8608fee5e0f427404e5ffe5eba';
+    fetch(latlongURL)
+        .then(function(results) {
+            return results.json();
+        })
+        .then(function(data) {
+            console.log(data);
+        });
+
+}
+
 
 searchFormEl.addEventListener('submit', handleCityInput);
 
