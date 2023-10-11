@@ -70,16 +70,18 @@ function callWeatherAPI() {
             // localStorage.setItem('currentTemp', currentTemp);
             // localStorage.setItem('currentWind', currentWind);
             // localStorage.setItem('currentHumidity', currentHumidity);
-            icon.innerHTML = cityName + currentIcon;
+            icon.innerHTML = cityName +' '+ currentIcon;
             temp.innerHTML = 'Temperature: '+currentTemp+' *F';
             wind.innerHTML = 'Wind Speed: '+currentWind+' mph';
             humidity.innerHTML = 'Humidity: '+currentHumidity+'%';
         
-            // for (i=0; i < 40; i+8) {
+            // function forecast() {
+            // for (i=0; i < 50; i+8) {
             //     var forecast = document.createElement('li');
-            //     forecast.innerHTML = 'Date: '+data.list[i].dt_txt+'<br/>Temperature: '+data.list[i].main.temp+'<br/>Wind Speed: '+data.list[i].wind.speed+'<br/>Humidity: '+data.list[i].main.humidity;
+            //     forecast.textContent = 'Date: '+data.list[i].dt_txt+'<br/>Temperature: '+data.list[i].main.temp+'<br/>Wind Speed: '+data.list[i].wind.speed+'<br/>Humidity: '+data.list[i].main.humidity;
             //     forecastEl.append(forecast);
-            // }
+            // }}
+            // forecast(data);
         })
 
             
