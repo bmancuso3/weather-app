@@ -17,7 +17,7 @@
 
   <div class="container-fluid row">
     
-    <div class="col-12 col-md-5 col-lg-4 bg-light p-2 m-2 border border-2 border-dark rounded">
+    <div class="col-12 col-md-5 col-lg-4 bg-secondary p-2 m-2 border border-2 border-dark rounded" style="--bs-bg-opacity: .3">
       <h3 class="bg-dark text-white p-1">Search for a city:</h3>
 
       <form id="search-form" class="form col-12 col-md-10 col-lg-8">
@@ -25,18 +25,20 @@
         <div id="msg"></div>
         <button class="btn btn-info btn-block mt-2">Search</button>
       </form>
+
     </div>
 
-    <div class="col-12 col-md-6 col-lg-7 bg-light p-2 m-2 border border-2 border-dark rounded">
+    <div class="col-12 col-md-6 col-lg-7 bg-secondary p-2 m-2 border border-2 border-dark rounded" style="--bs-bg-opacity: .4">
         <h3 class="bg-dark text-white p-1">Current Weather Report</h3>
-        <span class="h4" id="current-icon">Icon</span>
+        <div class="h4" id="search-city">Please search a city</div>
+        <img class="h3" id="current-icon"></img>
         <div id="current-temp">Temperature: </div>
         <div id="current-wind">Wind Speed: </div>
         <div id="current-humidity">Humidity: </div>
 
     </div>
 
-    <div class="col-11 container-fluid bg-light p-2 m-2 border border-2 border-dark rounded">
+    <div class="col-11 container-fluid bg-secondary p-2 m-2 border border-2 border-dark rounded" style="--bs-bg-opacity: .4">
         <h3 class="bg-dark text-white p-1">5-Day Forecast</h3>
         <ul id="forecast"></ul>
 

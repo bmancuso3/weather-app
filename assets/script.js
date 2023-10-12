@@ -1,6 +1,7 @@
 var searchFormEl = document.querySelector('#search-form');
 var cityInput = document.querySelector('#city-input');
 var msgDiv = document.querySelector('#msg');
+var searchCity = document.querySelector('#search-city')
 var icon = document.querySelector('#current-icon');
 var temp = document.querySelector('#current-temp');
 var wind = document.querySelector('#current-wind');
@@ -58,30 +59,36 @@ function callWeatherAPI() {
             return results.json();
         })
         .then(function(data) {
-            console.log(data);
+            // console.log(data);
             // Assigns values to current weather data and displays it on the page under current weather
             var cityName = data.city.name;
             var currentIcon = data.list[0].weather[0].icon;
-            var iconURL = document.getElementById('current-icon').src="http://openweathermap.org/img/wn/"+data.list[0].weather[0].icon+".png";
+            var iconURL = "http://openweathermap.org/img/wn/"+currentIcon+".png";
+            // console.log("Icon URL: " + iconURL);
+            icon.setAttribute("src", iconURL);
             var currentTemp = data.list[0].main.temp;
             var currentWind = data.list[0].wind.speed;
             var currentHumidity = data.list[0].main.humidity;
-            // localStorage.setItem('currentIcon', currentIcon);
-            // localStorage.setItem('currentTemp', currentTemp);
-            // localStorage.setItem('currentWind', currentWind);
-            // localStorage.setItem('currentHumidity', currentHumidity);
-            icon.innerText = cityName +' '+ currentIcon;
+
+            searchCity.innerText = cityName;
             temp.innerText = 'Temperature: '+currentTemp+' *F';
             wind.innerText = 'Wind Speed: '+currentWind+' mph';
             humidity.innerText = 'Humidity: '+currentHumidity+'%';
         
-            // for (var i=0; i < 41; i+8) {
-            //     var forecast = document.createElement('li');
-            //     forecast.innerText = 'Date: '+data.list[i].dt_txt+'<br />Temperature: '+data.list[i].main.temp+'<br />Wind Speed: '+data.list[i].wind.speed+'<br />Humidity: '+data.list[i].main.humidity;
-            //     forecastEl.append(forecast);
-            // }
-// day js to creat unix timestamp
-// use a time stamp 
+            for (var i = 0; i < data.list.length; i += 8) {
+                var forecast = document.createElement('li');
+                forecast.innerText = 
+                    'Date: ' +
+                    data.list[i].dt_txt +
+                    '<br />Temperature: ' +
+                    data.list[i].main.temp +
+                    '<br />Wind Speed: ' +
+                    data.list[i].wind.speed +
+                    '<br />Humidity: ' +
+                    data.list[i].main.humidity;
+                forecastEl.append(forecast);
+            }
+
         })
            
 }
