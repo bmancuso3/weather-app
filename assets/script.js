@@ -1,4 +1,5 @@
 var searchFormEl = document.querySelector('#search-form');
+var searchBtn = document.querySelector('#search-button');
 var cityInput = document.querySelector('#city-input');
 var msgDiv = document.querySelector('#msg');
 var searchCity = document.querySelector('#search-city')
@@ -42,11 +43,8 @@ function callGeoAPI() {
             console.log(data[0].lat, data[0].lon);
             localStorage.setItem('latitude', data[0].lat);
             localStorage.setItem('longitude', data[0].lon);
-        })
-        .then(function () {
             callWeatherAPI();
         })
-
 }
 
 // API call for weather using latitude and longitude generated from GeoAPI
@@ -74,23 +72,26 @@ function callWeatherAPI() {
             temp.innerText = 'Temperature: '+currentTemp+' *F';
             wind.innerText = 'Wind Speed: '+currentWind+' mph';
             humidity.innerText = 'Humidity: '+currentHumidity+'%';
-        
-            for (var i = 0; i < data.list.length; i += 8) {
+            
+            forecastEl.innerHTML = '';
+
+            for (var i = 6; i < data.list.length; i += 8) {             
+                
                 var forecast = document.createElement('li');
+                forecast.classList.add('list-group-item');
+                
                 forecast.innerText = 
                     'Date: ' +
                     data.list[i].dt_txt +
-                    '<br />Temperature: ' +
+                    ' Temperature: ' +
                     data.list[i].main.temp +
-                    '<br />Wind Speed: ' +
+                    ' Wind Speed: ' +
                     data.list[i].wind.speed +
-                    '<br />Humidity: ' +
+                    ' Humidity: ' +
                     data.list[i].main.humidity;
-                forecastEl.append(forecast);
+                forecastEl.appendChild(forecast);
             }
-
-        })
-           
+        })      
 }
 
 searchFormEl.addEventListener('submit', handleCityInput);
