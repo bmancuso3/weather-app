@@ -48,7 +48,6 @@ function callGeoAPI() {
 
 }
 
-
 // API call for weather using latitude and longitude generated from GeoAPI
 function callWeatherAPI() {
     var latitude = localStorage.getItem('latitude');
@@ -62,7 +61,8 @@ function callWeatherAPI() {
             console.log(data);
             // Assigns values to current weather data and displays it on the page under current weather
             var cityName = data.city.name;
-            var currentIcon = data.list[0].weather.icon;
+            var currentIcon = data.list[0].weather[0].icon;
+            var iconURL = document.getElementById('current-icon').src="http://openweathermap.org/img/wn/"+data.list[0].weather[0].icon+".png";
             var currentTemp = data.list[0].main.temp;
             var currentWind = data.list[0].wind.speed;
             var currentHumidity = data.list[0].main.humidity;
@@ -70,24 +70,21 @@ function callWeatherAPI() {
             // localStorage.setItem('currentTemp', currentTemp);
             // localStorage.setItem('currentWind', currentWind);
             // localStorage.setItem('currentHumidity', currentHumidity);
-            icon.innerHTML = cityName +' '+ currentIcon;
-            temp.innerHTML = 'Temperature: '+currentTemp+' *F';
-            wind.innerHTML = 'Wind Speed: '+currentWind+' mph';
-            humidity.innerHTML = 'Humidity: '+currentHumidity+'%';
+            icon.innerText = cityName +' '+ currentIcon;
+            temp.innerText = 'Temperature: '+currentTemp+' *F';
+            wind.innerText = 'Wind Speed: '+currentWind+' mph';
+            humidity.innerText = 'Humidity: '+currentHumidity+'%';
         
-            // function forecast() {
-            // for (i=0; i < 50; i+8) {
+            // for (var i=0; i < 41; i+8) {
             //     var forecast = document.createElement('li');
-            //     forecast.textContent = 'Date: '+data.list[i].dt_txt+'<br/>Temperature: '+data.list[i].main.temp+'<br/>Wind Speed: '+data.list[i].wind.speed+'<br/>Humidity: '+data.list[i].main.humidity;
+            //     forecast.innerText = 'Date: '+data.list[i].dt_txt+'<br />Temperature: '+data.list[i].main.temp+'<br />Wind Speed: '+data.list[i].wind.speed+'<br />Humidity: '+data.list[i].main.humidity;
             //     forecastEl.append(forecast);
-            // }}
-            // forecast(data);
+            // }
+// day js to creat unix timestamp
+// use a time stamp 
         })
-
-            
-
+           
 }
-
 
 searchFormEl.addEventListener('submit', handleCityInput);
 

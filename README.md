@@ -22,7 +22,7 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
 ## References
-1. <a href="https://www.w3schools.com/howto/howto_css_cards.asp"> W3Schools - How to Create a Card</a>
+1. <a href="https://www.w3schools.com/icons/"> W3Schools - Icons Tutorial</a>
 2. xyz - Bootcampspot Tutor, xyz@bootcampspot.com
 
 
